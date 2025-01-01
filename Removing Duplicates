@@ -1,0 +1,141 @@
+// step 01 : creating a node 
+
+class Node {
+    int data;
+    Node next;
+    
+    //  step 02 : creating a constructor for a node 
+    
+     Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+
+
+// step 03 : creating a class for Singly linked list
+
+class SinglyLinkedList{
+    
+    Node head;
+    
+    // inserting the data at the begining 
+    
+    public void insertingBegin(int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head= newNode;
+    }
+    
+    // Insert the data at the end of the node 
+    
+    public void insertingEnd(int data){
+        Node newNode = new Node(data);
+        if(head==null){
+            head=newNode;
+            return;
+        }
+         Node temp = head;
+         while(temp.next !=null){
+             temp=temp.next;
+         }
+             temp.next=newNode;
+         }
+         
+         // Deleting the particular node by any data 
+         
+         public void deletingparticularNode(int data){
+             if(head==null)
+             return;
+         
+
+         if(head.data==data){
+             head=head.next;
+             return;
+         }
+         
+         Node temp = head;
+         while(temp.next !=null && temp.next.data !=data){
+             temp=temp.next;
+         }
+         
+         if(temp.next==null)
+         return;
+         
+         temp.next = temp.next.next;
+         
+         
+         }
+         
+         //removing duplicates
+         
+         public void removeDuplicates() {
+             if (head == null) {
+             return;
+         }
+
+         Node current = head;
+         while (current != null) {
+             Node runner = current.next;
+             Node prev = current;
+             while (runner != null) {
+                 if (current.data == runner.data) {
+                     prev.next = runner.next; // Remove duplicate
+                 } else {
+                     prev = runner;
+                 }
+                 runner = runner.next;
+             }
+             current = current.next;
+         }
+     }
+         
+         
+        // displaying all the nodes 
+        
+      public void displayingallthenodes(){
+          Node temp = head;
+          while(temp !=null){
+              System.out.print(temp.data + "->");
+              temp= temp.next;
+          }
+          System.out.println("null");
+      }
+
+    }
+    
+    // Main function for execution
+    
+    public class Main{
+        public static void main(String[] args){
+            SinglyLinkedList lists = new SinglyLinkedList();
+            
+            // inserting a data beginning 
+            
+            lists.insertingBegin(10);
+            lists.insertingBegin(10);
+            lists.insertingBegin(20);
+            lists.insertingBegin(50);
+            lists.insertingBegin(100);
+            
+            // inserting a data at end 
+            
+            lists.insertingEnd(30);
+            lists.insertingEnd(40);
+            lists.insertingEnd(600);
+            
+            
+            // deleting the particular node 
+            
+            lists.deletingparticularNode(50);
+            
+            // removing duplicates
+            
+            lists.removeDuplicates();
+            
+            // display all the nodes 
+            
+            lists.displayingallthenodes();
+        }
+    }
+
